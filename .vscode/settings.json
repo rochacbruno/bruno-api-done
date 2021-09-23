@@ -1,0 +1,10 @@
+{
+    "extensions.showBuiltin": true,
+    "redhat.telemetry.enabled": true,
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "editor.fontSize": 18,
+    "git.autofetch": true,
+    "python.insidersChannel": "off",
+    "update.mode": "manual",
+    "extensions.autoUpdate": false
+ }

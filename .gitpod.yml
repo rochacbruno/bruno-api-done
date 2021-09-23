@@ -1,0 +1,31 @@
+# Commands to start on workspace startup
+tasks:
+  - name: "Prepare Environment"
+    init: > 
+      pip install --upgrade pip &&
+      make install &&
+      gp sync-done install
+    command: "project_name create-user admin admin --superuser || exit 0"
+
+  - name: "Run server"
+    init: gp sync-await install
+    command: "project_name run --port 8000"
+
+  - name: "Open the Shell"
+    init: gp sync-await install
+    command: "project_name shell"
+    openMode: "tab-after"
+
+# Ports to expose on workspace startup
+ports:
+  - port: 8000
+    onOpen: open-preview
+    visibility: public
+
+vscode:
+  extensions:
+    - "ms-python.python@2021.9.1218897484"
+    - "redhat.vscode-yaml"
+    - "tamasfe.even-better-toml"
+    - "alexcvzz.vscode-sqlite"
+    - "jdinhlife.gruvbox"
