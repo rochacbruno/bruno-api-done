@@ -3,4 +3,4 @@ COPY . /app
 WORKDIR /app
 RUN pip install .
 EXPOSE 8000
-CMD ["project_name", "run", "--port", "8000"]
+CMD ["bruno_api", "run", "--port", "8000"]

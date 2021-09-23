@@ -26,20 +26,20 @@ install:          ## Install the project in dev mode.
 
 .PHONY: fmt
 fmt:              ## Format code using black & isort.
-	$(ENV_PREFIX)isort project_name/
-	$(ENV_PREFIX)black -l 79 project_name/
+	$(ENV_PREFIX)isort bruno_api/
+	$(ENV_PREFIX)black -l 79 bruno_api/
 	$(ENV_PREFIX)black -l 79 tests/
 
 .PHONY: lint
 lint:             ## Run pep8, black, mypy linters.
-	$(ENV_PREFIX)flake8 project_name/
-	$(ENV_PREFIX)black -l 79 --check project_name/
+	$(ENV_PREFIX)flake8 bruno_api/
+	$(ENV_PREFIX)black -l 79 --check bruno_api/
 	$(ENV_PREFIX)black -l 79 --check tests/
-	$(ENV_PREFIX)mypy --ignore-missing-imports project_name/
+	$(ENV_PREFIX)mypy --ignore-missing-imports bruno_api/
 
 .PHONY: test
 test: lint        ## Run tests and generate coverage report.
-	$(ENV_PREFIX)pytest -v --cov-config .coveragerc --cov=project_name -l --tb=short --maxfail=1 tests/
+	$(ENV_PREFIX)pytest -v --cov-config .coveragerc --cov=bruno_api -l --tb=short --maxfail=1 tests/
 	$(ENV_PREFIX)coverage xml
 	$(ENV_PREFIX)coverage html
 
@@ -89,7 +89,7 @@ switch-to-poetry: ## Switch to poetry package manager.
 	@poetry init --no-interaction --name=a_flask_test --author=rochacbruno
 	@echo "" >> pyproject.toml
 	@echo "[tool.poetry.scripts]" >> pyproject.toml
-	@echo "project_name = 'project_name.__main__:main'" >> pyproject.toml
+	@echo "bruno_api = 'bruno_api.__main__:main'" >> pyproject.toml
 	@cat requirements.txt | while read in; do poetry add --no-interaction "$${in}"; done
 	@cat requirements-test.txt | while read in; do poetry add --no-interaction "$${in}" --dev; done
 	@poetry install --no-interaction
@@ -97,7 +97,7 @@ switch-to-poetry: ## Switch to poetry package manager.
 	@mv requirements* .github/backup
 	@mv setup.py .github/backup
 	@echo "You have switched to https://python-poetry.org/ package manager."
-	@echo "Please run 'poetry shell' or 'poetry run project_name'"
+	@echo "Please run 'poetry shell' or 'poetry run bruno_api'"
 
 
 # This project has been generated from rochacbruno/python-project-template

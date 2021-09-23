@@ -5,15 +5,15 @@ tasks:
       pip install --upgrade pip &&
       make install &&
       gp sync-done install
-    command: "project_name create-user admin admin --superuser || exit 0"
+    command: "bruno_api create-user admin admin --superuser || exit 0"
 
   - name: "Run server"
     init: gp sync-await install
-    command: "project_name run --port 8000"
+    command: "bruno_api run --port 8000"
 
   - name: "Open the Shell"
     init: gp sync-await install
-    command: "project_name shell"
+    command: "bruno_api shell"
     openMode: "tab-after"
 
 # Ports to expose on workspace startup
