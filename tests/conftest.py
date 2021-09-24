@@ -12,6 +12,7 @@ os.environ["FORCE_ENV_FOR_DYNACONF"] = "testing"  # noqa
 from bruno_api.app import app
 from bruno_api.cli import cli
 from bruno_api.config import settings
+from bruno_api.routes import main_router
 
 
 @pytest.fixture(autouse=True)
@@ -29,6 +30,11 @@ def go_to_tmpdir(request):
 @pytest.fixture(scope="function", name="app")
 def _app():
     return app
+
+
+@pytest.fixture(scope="function", name="router")
+def _router():
+    return main_router
 
 
 @pytest.fixture(scope="function", name="cli")

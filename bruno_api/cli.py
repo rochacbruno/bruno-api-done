@@ -1,8 +1,11 @@
 import typer
 import uvicorn
 
+from sqlmodel import Session
 from .app import app
 from .config import settings
+from .db import init_db, engine 
+from .models.user import User
 
 cli = typer.Typer(name="bruno_api API")
 
@@ -40,3 +43,16 @@ def shell():  # pragma: no cover
         import code
 
         code.InteractiveConsole(_vars).interact()
+
+
+@cli.command()
+def create_user(username: str, password: str, superuser: bool = False):
+    """Create user"""
+    init_db()
+    with Session(engine) as session:
+        user = User(username=username, password=password, superuser=superuser)
+        session.add(user)
+        session.commit()
+        session.refresh(user)
+        typer.echo(f"created {username} user")
+        return user
