@@ -1,9 +1,9 @@
-import time
-sleep = time.sleep
+import asyncio
+sleep = asyncio.sleep
 
-def fazer_burger(senha, n):
-    print(f"fazendo burger {n} para {senha}")
-    sleep(2)
+async def fazer_burger(senha, n):
+    print(f"fazendo async burger {n} para {senha}")
+    await sleep(2)
     return b" [|O] "
 
 
@@ -14,13 +14,13 @@ async def app(scope, receive, send):
     })
 
     senha = scope.get("path", "0")
-    burger1 = fazer_burger(senha, 1)
-    burger2 = fazer_burger(senha, 2)
-    burger3 = fazer_burger(senha, 3)
+    burger1 = await fazer_burger(senha, 1)
+    burger2 = await fazer_burger(senha, 2)
+    burger3 = await fazer_burger(senha, 3)
     body = senha.encode() + burger1 + burger2 + burger3
     
     await send({
         'type': 'http.response.body',
         'body': body,
     })
-    print("request terminado")
+    print("request async terminado")
