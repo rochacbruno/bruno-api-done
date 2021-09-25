@@ -17,6 +17,7 @@ class ValidatePassword(BaseModel):
     def validate_password(cls, v, values, **kwargs):
         if v != values['password']:
             raise ValueError("Passwords don't match")
+        return v
 
 
 class UserIn(ValidatePassword):
