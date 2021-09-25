@@ -10,7 +10,7 @@ Awesome bruno_api created by rochacbruno
 
 ### Running on gitpod
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rochacbruno/bruno-api)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/rochacbruno/bruno-api-done)
 
 ### from source
 ```bash
