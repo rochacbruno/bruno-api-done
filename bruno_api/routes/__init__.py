@@ -9,4 +9,4 @@ main_router.include_router(content_router, prefix="/content", tags=["content"])
 
 @main_router.get("/")
 async def index():
-    return RedirectResponse("/redoc")
+    return RedirectResponse("/docs")
